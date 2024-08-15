@@ -15,6 +15,7 @@
   "dependencies": {
     "@langchain/community": "^0.2.23",
     "@langchain/core": "^0.2.20",
+    "@langchain/groq": "^0.0.16",
     "@langchain/langgraph": "^0.0.31",
     "@langchain/openai": "^0.2.5",
     "@next/bundle-analyzer": "^13.4.19",

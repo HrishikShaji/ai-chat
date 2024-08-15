@@ -233,6 +233,17 @@
     zod "^3.22.4"
     zod-to-json-schema "^3.22.3"
 
+"@langchain/groq@*", "@langchain/groq@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.npmjs.org/@langchain/groq/-/groq-0.0.16.tgz"
+  integrity sha512-rwD57PzT54clE4WigMzTMmA9rIifXq82uQ9nqFHJ4hfDV38P2lbQ1/N21QE0+L8c9oKvdY+TVm0vlilxV4w22A==
+  dependencies:
+    "@langchain/core" ">=0.2.21 <0.3.0"
+    "@langchain/openai" "~0.2.6"
+    groq-sdk "^0.5.0"
+    zod "^3.22.4"
+    zod-to-json-schema "^3.22.5"
+
 "@langchain/langgraph@^0.0.31", "@langchain/langgraph@~0.0.26":
   version "0.0.31"
   resolved "https://registry.npmjs.org/@langchain/langgraph/-/langgraph-0.0.31.tgz"
@@ -242,7 +253,7 @@
     uuid "^10.0.0"
     zod "^3.23.8"
 
-"@langchain/openai@^0.2.5", "@langchain/openai@>=0.1.0 <0.3.0", "@langchain/openai@>=0.2.0 <0.3.0":
+"@langchain/openai@^0.2.5", "@langchain/openai@>=0.1.0 <0.3.0", "@langchain/openai@>=0.2.0 <0.3.0", "@langchain/openai@~0.2.6":
   version "0.2.6"
   resolved "https://registry.npmjs.org/@langchain/openai/-/openai-0.2.6.tgz"
   integrity sha512-LZgSzHOZPJGsZr2ZXJICqZo1GN0kUyP9/RN+T45g7HDdMRfS5Df7fJgY9w7EIfznT83Q0Ywhz+At/UvWMR3xhw==
@@ -1889,6 +1900,20 @@ graphemer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
+
+groq-sdk@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.npmjs.org/groq-sdk/-/groq-sdk-0.5.0.tgz"
+  integrity sha512-RVmhW7qZ+XZoy5fIuSdx/LGQJONpL8MHgZEW7dFwTdgkzStub2XQx6OKv28CHogijdwH41J+Npj/z2jBPu3vmw==
+  dependencies:
+    "@types/node" "^18.11.18"
+    "@types/node-fetch" "^2.6.4"
+    abort-controller "^3.0.0"
+    agentkeepalive "^4.2.1"
+    form-data-encoder "1.7.2"
+    formdata-node "^4.3.2"
+    node-fetch "^2.6.7"
+    web-streams-polyfill "^3.2.1"
 
 gzip-size@^6.0.0:
   version "6.0.0"
@@ -3544,6 +3569,11 @@ vue@^3.3.4, "vue@>=3.2.26 < 4", vue@3.4.38:
     "@vue/runtime-dom" "3.4.38"
     "@vue/server-renderer" "3.4.38"
     "@vue/shared" "3.4.38"
+
+web-streams-polyfill@^3.2.1:
+  version "3.3.3"
+  resolved "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz"
+  integrity sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==
 
 web-streams-polyfill@4.0.0-beta.3:
   version "4.0.0-beta.3"
