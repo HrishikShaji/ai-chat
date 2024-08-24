@@ -1,17 +1,9 @@
-
 "use client"
 
 import { memo, useCallback, useEffect, useRef, useState } from "react"
 import { landformTopics } from "./sampleData"
-import ReactMarkdown, { Components, ExtraProps } from "react-markdown"
 import style from "./medium.module.css"
-import remarkGfm from "remark-gfm"
-import rehypeRaw from "rehype-raw"
-import dynamic from "next/dynamic";
-import { unified } from 'unified';
-import parse from 'remark-parse';
-import { visit } from 'unist-util-visit';
-import { report } from "process"
+import { RenderMarkdown } from "./RenderMarkdown"
 
 type Topic = {
   isCompleted: boolean;
@@ -27,10 +19,6 @@ type Report = {
   chartData: string;
   tables: any[];
 }
-const ClientSideChartRender = dynamic(
-  () => import('./ChatChartRender'),
-  { ssr: false }
-);
 function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -140,8 +128,7 @@ async function fetchReport({ topic, addReport, addReports }: { topic: Topic, add
         }
       }
     }
-    const tables = extractTables(markdown)
-    addReports({ name: topic.name, parentKey: topic.parentKey, content: markdown, chartData: chartData, tables: tables })
+    addReports({ name: topic.name, parentKey: topic.parentKey, content: markdown, chartData: chartData, tables: [] })
   }
 }
 
@@ -218,14 +205,14 @@ export default function Sample() {
             {reports.map((report, i) => (
               <div style={{ display: currentParent === report.parentKey ? "block" : "none" }} className="w-[1000px] p-5 rounded-3xl bg-gray-100" key={i}>
                 <div className={style.markdown}>
-                  <MemoizedMarkdown chartData={report.chartData} content={report.content} tables={report.tables} />
+                  <RenderMarkdown content={report.content} />
                 </div>
               </div>
             ))}
             {streaming ?
               <div style={{ display: currentParent === streamingReportParent ? "block" : "none" }} className="w-[1000px] p-5 rounded-3xl ">
                 <div className={style.markdown}>
-                  <MemoizedMarkdown chartData="" content={streamingReport} tables={[]} />
+                  <RenderMarkdown content={streamingReport} />
                 </div>
               </div> : null}
           </div>
@@ -237,65 +224,4 @@ export default function Sample() {
 
 
 
-const MemoizedMarkdown = ({ content, chartData, tables }: { content: string, chartData: string, tables: any[] }) => {
-  const tableIndexRef = useRef(0);
 
-  return (
-    <ReactMarkdown
-      components={{
-        "status": ({ node, ...props }: ExtraProps) => {
-          return null;
-        },
-        "json": ({ node, ...props }: ExtraProps) => {
-          return null;
-        },
-        "report-metadata": ({ node, ...props }: ExtraProps) => {
-          return null;
-        },
-        "report": ({ node, ...props }: ExtraProps) => {
-          return <div className="bg-yellow-500" {...props} />;
-        },
-        "report-chart": ({ node, ...props }: ExtraProps) => {
-          return <div className="bg-green-500" {...props} />;
-        },
-        table: memo(({ node, ...props }) => {
-          return (
-            <div className="flex flex-col gap-2">
-              <button
-                type="button"
-                className="bg-black text-white px-2 py-1 rounded-md"
-                onClick={() => console.log("these are tables", tables)}
-              >
-                Show Chart
-              </button>
-              <table {...props} />
-            </div>
-          );
-        }),
-        script: memo(({ node, src, children }) => {
-          if (src === "https://cdn.plot.ly/plotly-latest.min.js") {
-            return null;
-          }
-          return (
-            <div className="flex flex-col gap-2">
-              <button
-                className="bg-black text-white px-2 py-1 rounded-md"
-                onClick={() => console.log(node?.children)}
-              >
-                Show Chart
-              </button>
-              <ClientSideChartRender scriptContent={children as string} />
-            </div>
-          );
-        }),
-        div: ({ node, ...props }) => {
-          return null;
-        },
-      } as Components}
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
-    >
-      {content}
-    </ReactMarkdown>
-  );
-};
