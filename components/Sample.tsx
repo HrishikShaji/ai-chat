@@ -42,9 +42,10 @@ function extractTables(markdown: string) {
   let inTable = false;
 
   lines.forEach((line) => {
-    const isTableLine = line.trim().startsWith('|') || line.trim().match(/^[-|:]+$/);
+    const isTableHeader = line.trim().startsWith('|') && line.includes('|');
+    const isTableSeparator = line.trim().match(/^\|?[-: ]+\|?$/);
 
-    if (isTableLine) {
+    if (isTableHeader || isTableSeparator) {
       inTable = true;
       currentTable.push(line);
     } else if (inTable) {
@@ -62,8 +63,14 @@ function extractTables(markdown: string) {
     tables.push(currentTable.join('\n'));
   }
 
-  console.log("Extracted Tables as Markdown:", tables);
-  return tables;
+  // Filter out any accidental captures that aren't valid tables
+  const filteredTables = tables.filter((table) => {
+    const lines = table.split('\n');
+    return lines.length > 2 && lines.some(line => line.includes('|') && !line.match(/^\|?[-: ]+\|?$/));
+  });
+
+  console.log("Extracted Tables as Markdown:", filteredTables);
+  return filteredTables;
 }
 
 async function fetchReport({ topic, addReport, addReports }: { topic: Topic, addReport: (report: string) => void, addReports: (report: Report) => void }) {
