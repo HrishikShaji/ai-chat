@@ -1,0 +1,81 @@
+
+
+   .markdown h1 {
+        font-size: 40px;
+        margin-bottom: 0.5em;
+        font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.84);
+        letter-spacing: -0.022em;
+        line-height: 1.2;
+    }
+
+    .markdown h2 {
+        font-size: 32px;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.84);
+        letter-spacing: -0.022em;
+        line-height: 1.2;
+    }
+
+    .markdown h3 {
+        font-size: 26px;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.84);
+        letter-spacing: -0.022em;
+        line-height: 1.2;
+    }
+
+        .markdown h4 {
+        font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.84);
+        letter-spacing: -0.022em;
+        line-height: 1.2;
+
+        }
+
+        .markdown h5 {
+        font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.84);
+        letter-spacing: -0.022em;
+        line-height: 1.2;
+
+        }
+
+        .markdown h6 {
+        font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.84);
+        letter-spacing: -0.022em;
+        line-height: 1.2;
+
+        }
+
+        .markdown p {
+            margin-bottom: 32px;
+
+        }
+        /* Links */
+        .markdown a {
+            color: #1a8917;
+            text-decoration: none;
+        }
+        .markdown a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .markdown h1 {
+                font-size: 32px;
+            }
+            .markdown h2 {
+                font-size: 24px;
+            }
+        }

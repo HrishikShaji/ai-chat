@@ -45,7 +45,9 @@ export async function POST(req: NextRequest) {
     const model = new ChatGroq({
       temperature: 0.8,
       model: "mixtral-8x7b-32768",
-      apiKey: process.env.NEXT_PUBLIC_GROQ_API_KEY
+      apiKey: process.env.NEXT_PUBLIC_GROQ_API_KEY,
+      maxTokens: 1000,
+      verbose: true
     });
 
     /**
